@@ -1,1 +1,9 @@
-["index.md"]
+[
+    {
+        "filename": "logo.md",
+        "attr": {
+            "data-background": "image/rg_groningen_rocks.png"
+        }
+    },
+    "index.md"
+]
