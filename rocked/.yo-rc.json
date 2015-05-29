@@ -1,0 +1,9 @@
+{
+  "generator-reveal": {
+    "presentationTitle": "What happens when your world is rocked?",
+    "packageVersion": "1.0.0",
+    "revealTheme": "default",
+    "useSass": false,
+    "deployToGithubPages": false
+  }
+}

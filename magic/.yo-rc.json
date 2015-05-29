@@ -1,0 +1,9 @@
+{
+  "generator-reveal": {
+    "presentationTitle": "3 is a magic number",
+    "packageVersion": "1.0.0",
+    "revealTheme": "default",
+    "useSass": false,
+    "deployToGithubPages": false
+  }
+}
