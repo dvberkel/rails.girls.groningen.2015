@@ -17,5 +17,18 @@
         "attr": {
             "data-background": "image/jelly-beans.jpg"
         }
-    }
+    },
+    [
+        {
+            "attr": {
+                "data-background": "image/terminal.jpg"
+            }
+        },
+        {
+            "filename": "terminal.md",
+            "attr": {
+                "data-background": "image/terminal.jpg"
+            }
+        }
+    ]
 ]
