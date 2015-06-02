@@ -5,5 +5,11 @@
             "data-background": "image/rg_groningen_rocks.png"
         }
     },
-    "index.md"
+    "index.md",
+    {
+        "filename": "experiences.html",
+        "attr": {
+            "data-state": "experience"
+        }
+    }
 ]
