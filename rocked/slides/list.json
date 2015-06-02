@@ -11,5 +11,11 @@
         "attr": {
             "data-state": "experience"
         }
+    },
+    {
+        "filename": "food.md",
+        "attr": {
+            "data-background": "image/jelly-beans.jpg"
+        }
     }
 ]
