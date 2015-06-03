@@ -21,9 +21,13 @@
             var G = new relationship.Graph();
             var v = G.addVertex(0, 0);
             var view = new relationship.GraphView(G, document.getElementById('graph'));
-            requestAnimationFrame(function(){
+            function loop(){
+                var t = (new Date()).getTime()/1000; // time in seconds
+                v.setRadius(20 + 3 * Math.sin(t * 2 * Math.PI));
                 view.update();
-            });
+                requestAnimationFrame(loop);
+            }
+            loop();
         }
     };
 

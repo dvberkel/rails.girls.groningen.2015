@@ -126,6 +126,7 @@
             var position = this.placement(v);
             vertex.setAttribute('cx', position.x);
             vertex.setAttribute('cy', position.y);
+            vertex.setAttribute('r', v.radius || this.options.vertex.radius);
             vertex.setAttribute('fill', this.options.vertex.color.fill);
             vertex.setAttribute('stroke', this.options.vertex.color.stroke);
         }.bind(this));
