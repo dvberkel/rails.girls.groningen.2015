@@ -20,12 +20,12 @@
         'relationship': function(){
             var G = new relationship.Graph();
             var v = G.addVertex(0, 0);
-            v.motion = relationship.brownianMotion(1,{ x: -0.5, y: 0 });
+            v.motion = function(){ /* do nothing */ };
             var view = new relationship.GraphView(G, document.getElementById('graph'));
             function loop(){
                 var t = (new Date()).getTime()/1000; // time in seconds
-                v.motion(v);
                 v.setRadius(20 + 3 * Math.sin(t * 2 * Math.PI));
+                G.update();
                 view.update();
                 requestAnimationFrame(loop);
             }

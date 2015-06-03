@@ -51,7 +51,9 @@
         return this.head === v ? this.tail: this.head;
     };
 
-    var Graph = $.Graph = function(){
+    var Graph = $.Graph = function(options){
+        this.options = extend(options || {},
+                              { vertex: { speed: 1, drift: { x: -0.5, y: 0 } } });
         this.vertexId = 0;
         this.vertices = [];
         this.edgeId = 0;
@@ -59,6 +61,7 @@
     };
     Graph.prototype.addVertex = function(x, y) {
         var v = new Vertex(x, y, this.vertexId++);
+        v.motion = $.brownianMotion(this.options.vertex.speed, this.options.vertex.drift);
         this.vertices.push(v);
         return v;
     };
@@ -90,6 +93,11 @@
             return candidates[0];
         }
         return undefined;
+    };
+    Graph.prototype.update = function(){
+        this.vertices.forEach(function(v){
+            v.motion(v);
+        });
     };
 
     var GraphView = $.GraphView = function(graph, container, options){
