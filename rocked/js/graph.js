@@ -28,6 +28,12 @@
         return Math.sqrt(Math.pow(u.x - v.x,2) + Math.pow(u.y - v.y,2));
     }
 
+    function spring(u, v, threshold, k) {
+        var d = threshold/distance(u, v);
+        var n = { x: (u.x - v.x) * d, y: (u.y - v.y) * d};
+        return { x: (n.x - u.x) * k, y: (n.y - u.y) * k };
+    }
+
     function contains(collection, target) {
         return collection.reduce(function(found, element){ return found || element === target; }, false);
     }
@@ -57,7 +63,8 @@
 
     var Graph = $.Graph = function(options){
         this.options = extend(options || {},
-                              { vertex: { speed: 2, drift: { x: -1, y: 0 }, threshold: 100 } });
+                              { vertex: { speed: 2, drift: { x: -1, y: 0 }, threshold: 100 } },
+                              { spring: { constant: 0.2 } });
         this.vertexId = 0;
         this.vertices = [];
         this.edgeId = 0;
@@ -99,9 +106,6 @@
         return undefined;
     };
     Graph.prototype.update = function(){
-        this.vertices.forEach(function(v){
-            v.motion(v);
-        });
         this.vertices.forEach(function(u){
             this.vertices.filter(function(v){
                 return u !== v;
@@ -112,6 +116,19 @@
             }.bind(this)).forEach(function(v){
                 this.addEdge(u, v);
             }.bind(this));
+        }.bind(this));
+        this.vertices.forEach(function(v){
+            v.motion(v);
+        });
+        this.vertices.forEach(function(v){
+            var force = this.neighbourhood(v).map(function(u){
+                return spring(v, u, this.options.vertex.threshold, this.options.spring.constant);
+            }.bind(this)).reduce(function(total, f){
+                return { x: total.x + f.x, y: total.y + f.y };
+            }, { x: 0, y: 0 });
+            for (var z in force) {
+                v[z] += force[z];
+            }
         }.bind(this));
     };
 
