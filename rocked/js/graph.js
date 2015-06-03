@@ -176,4 +176,14 @@
         }
         return this.edgesContainer;
     };
+
+    $.brownianMotion = function(speed, drift){
+        return function(position){
+            var angle = 2 * Math.PI * Math.random();
+            var dx = speed * Math.cos(angle) + drift.x;
+            var dy = speed * Math.sin(angle) + drift.y;
+            position.x += dx;
+            position.y += dy;
+        };
+    };
 })(window.relationship = window.relationship || {});
