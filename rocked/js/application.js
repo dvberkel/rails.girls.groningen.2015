@@ -30,6 +30,11 @@
                 requestAnimationFrame(loop);
             }
             loop();
+            document.body.addEventListener('keydown', function(event){
+                if (event.keyCode === 65) { /* 'a' */
+                    G.addVertex(250, 500 * (Math.random() - 0.5));
+                }
+            });
         }
     };
 
