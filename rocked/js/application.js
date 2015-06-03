@@ -1,5 +1,5 @@
-/*global document, setInterval, Reveal*/
-;(function(Reveal){
+/*global document, setInterval, requestAnimationFrame, Reveal, relationship*/
+;(function(Reveal, relationship){
     'use strict';
 
     var events = {
@@ -16,6 +16,14 @@
             }
             advance();
             setInterval(advance, 300);
+        },
+        'relationship': function(){
+            var G = new relationship.Graph();
+            var v = G.addVertex(0, 0);
+            var view = new relationship.GraphView(G, document.getElementById('graph'));
+            requestAnimationFrame(function(){
+                view.update();
+            });
         }
     };
 
@@ -32,4 +40,4 @@
     for (var type in events) {
         Reveal.addEventListener(type, revealListener);
     }
-})(Reveal);
+})(Reveal, relationship);
