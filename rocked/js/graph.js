@@ -53,7 +53,7 @@
 
     var Graph = $.Graph = function(options){
         this.options = extend(options || {},
-                              { vertex: { speed: 1, drift: { x: -0.5, y: 0 } } });
+                              { vertex: { speed: 2, drift: { x: -1, y: 0 } } });
         this.vertexId = 0;
         this.vertices = [];
         this.edgeId = 0;
