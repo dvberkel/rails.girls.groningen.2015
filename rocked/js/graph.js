@@ -24,6 +24,10 @@
         };
     }
 
+    function distance(u, v) {
+        return Math.sqrt(Math.pow(u.x - v.x,2) + Math.pow(u.y - v.y,2));
+    }
+
     function contains(collection, target) {
         return collection.reduce(function(found, element){ return found || element === target; }, false);
     }
@@ -53,7 +57,7 @@
 
     var Graph = $.Graph = function(options){
         this.options = extend(options || {},
-                              { vertex: { speed: 2, drift: { x: -1, y: 0 } } });
+                              { vertex: { speed: 2, drift: { x: -1, y: 0 }, threshold: 100 } });
         this.vertexId = 0;
         this.vertices = [];
         this.edgeId = 0;
@@ -98,6 +102,17 @@
         this.vertices.forEach(function(v){
             v.motion(v);
         });
+        this.vertices.forEach(function(u){
+            this.vertices.filter(function(v){
+                return u !== v;
+            }).filter(function(v){
+                return distance(u, v) < this.options.vertex.threshold;
+            }.bind(this)).filter(function(v){
+                return (this.findEdgeBetween(u, v) === undefined);
+            }.bind(this)).forEach(function(v){
+                this.addEdge(u, v);
+            }.bind(this));
+        }.bind(this));
     };
 
     var GraphView = $.GraphView = function(graph, container, options){
@@ -115,8 +130,7 @@
                               { 'edge': {
                                   'events': {},
                                   'color' : {
-                                      'default': 'black',
-                                      'forWeight': {}
+                                      'stroke': 'red'
                                   }
                               }});
         this.graph = graph;
@@ -146,7 +160,7 @@
             edge.setAttribute('y1', head.y);
             edge.setAttribute('x2', tail.x);
             edge.setAttribute('y2', tail.y);
-            edge.setAttribute('stroke', this.options.edge.color.forWeight[e.weight] || this.options.edge.color.default);
+            edge.setAttribute('stroke', this.options.edge.color.stroke);
         }.bind(this));
     };
     GraphView.prototype.findVertex = function(id){
