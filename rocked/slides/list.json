@@ -18,6 +18,12 @@
             "data-background": "image/jelly-beans.jpg"
         }
     },
+    {
+        "filename": "relationship.html",
+        "attr": {
+            "data-state": "relationship"
+        }
+    },
     [
         {
             "attr": {
