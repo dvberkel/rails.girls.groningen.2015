@@ -24,6 +24,12 @@
             "data-state": "relationship"
         }
     },
+    {
+        "filename": "computer.md",
+        "attr": {
+            "data-background": "image/mark-I.jpg"
+        }
+    },
     [
         {
             "attr": {
