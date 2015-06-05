@@ -1,0 +1,7 @@
+.card.deck {
+    width: 225px;
+    height: 315px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(../image/deck.jpg);
+}
