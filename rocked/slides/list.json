@@ -24,12 +24,20 @@
             "data-state": "relationship"
         }
     },
-    {
-        "filename": "computer.md",
-        "attr": {
-            "data-background": "image/mark-I.jpg"
+    [
+        {
+            "filename": "computer.md",
+            "attr": {
+                "data-background": "image/mark-I.jpg"
+            }
+        },
+        {
+            "filename": "program.html",
+            "attr": {
+                "data-background": "image/mark-I.jpg"
+            }
         }
-    },
+    ],
     [
         {
             "attr": {
