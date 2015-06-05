@@ -50,5 +50,11 @@
                 "data-background": "image/terminal.jpg"
             }
         }
-    ]
+    ],
+    {
+        "filename": "coaches.html",
+        "attr": {
+            "data-state": "coaches"
+        }
+    }
 ]

@@ -1,6 +1,15 @@
-/*global document, setInterval, requestAnimationFrame, Reveal, relationship*/
+/*global window, document, navigator, Promise, setInterval, requestAnimationFrame, Reveal, relationship*/
 ;(function(Reveal, relationship){
     'use strict';
+
+    var videoPromise = new Promise(function(accept, reject){
+        navigator.webkitGetUserMedia({ 'video': {
+            mandatory: {
+                minWidth: 1280,
+                minHeight: 720
+            }
+        }}, accept, reject);
+    });
 
     var events = {
         'experience': function(event){
@@ -35,6 +44,14 @@
                     G.addVertex(250, 500 * (Math.random() - 0.5));
                 }
             });
+        },
+        'coaches': function(){
+            videoPromise.then(function(localMediaStream){
+                var url = window.URL.createObjectURL(localMediaStream);
+                var video = document.getElementById('coaches');
+                video.src = url;
+            });
+
         }
     };
 
