@@ -11,6 +11,9 @@
         }}, accept, reject);
     });
 
+    var G = new relationship.Graph();
+    var v = G.addVertex(0, 0);
+    v.motion = function(){ /* do nothing */ };
     var events = {
         'experience': function(event){
             var words = ['relationship', 'frustration', 'joy', 'empowerment', 'food',
@@ -27,9 +30,6 @@
             setInterval(advance, 300);
         },
         'relationship': function(){
-            var G = new relationship.Graph();
-            var v = G.addVertex(0, 0);
-            v.motion = function(){ /* do nothing */ };
             var view = new relationship.GraphView(G, document.getElementById('graph'));
             function loop(){
                 var t = (new Date()).getTime()/1000; // time in seconds
@@ -51,7 +51,14 @@
                 var video = document.getElementById('coaches');
                 video.src = url;
             });
-
+        },
+        'you': function(){
+            var view = new relationship.GraphView(G, document.getElementById('you'));
+            function loop(){
+                view.update();
+                requestAnimationFrame(loop);
+            }
+            loop();
         }
     };
 

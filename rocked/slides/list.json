@@ -56,5 +56,11 @@
         "attr": {
             "data-state": "coaches"
         }
+    },
+    {
+        "filename": "you.html",
+        "attr": {
+            "data-state": "you"
+        }
     }
 ]
