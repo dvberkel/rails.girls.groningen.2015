@@ -83,7 +83,7 @@
         this.show('3H');
     };
     View.prototype.show = function(name){
-        var card = deck.cards[name || 'AH'] || deck.cards['AH'];
+        var card = deck.cards[name || 'AH'] || deck.cards.AH;
         this.container.style.backgroundPositionX = card.positionX();
         this.container.style.backgroundPositionY = card.positionY();
     };
