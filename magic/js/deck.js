@@ -80,7 +80,7 @@
 
     var View = deck.View = function(container){
         this.container = container;
-        this.show('3H');
+        this.show('AH');
     };
     View.prototype.show = function(name){
         var card = deck.cards[name || 'AH'] || deck.cards.AH;
